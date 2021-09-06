@@ -27,6 +27,18 @@
     <%= submit_tag("Submit")%>
 <% end %>-->
 
+<% if @user.errors.any? %>
+  <div id="errors">
+    <h3>There are<%=  pluralize(@user.errors.count, "error") %> in the form</h3>
+
+    <ul>
+      <% @user.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model:@user do |form|%>
     <%= form.label "Username:"%>
     <%= form.text_field :username, :value => "default_username"%></br>
